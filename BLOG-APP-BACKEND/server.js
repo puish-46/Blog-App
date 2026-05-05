@@ -12,7 +12,7 @@ config()
 //create exp app
 const app=exp()
 
-app.use(cors({origin: ['http://localhost:5173'],credentials: true}));
+app.use(cors({origin: ['http://localhost:5173',process.env.FRONTEND_URL],credentials: true}));
 //cookie parer middleware
 app.use(cookieParser())
 //body parser middleware
