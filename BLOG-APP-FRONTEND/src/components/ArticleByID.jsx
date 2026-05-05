@@ -49,7 +49,7 @@ function ArticleByID() {
       setLoading(true);
 
       try {
-        const res = await axios.get(`http://localhost:4000/user-api/article/${id}`, { withCredentials: true });
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/user-api/article/${id}`, { withCredentials: true });
         console.log("ARTICLES DATA:", res.data);
         setArticle(res.data.payload);
       } catch (err) {
@@ -79,7 +79,7 @@ function ArticleByID() {
 
     try {
       const res = await axios.patch(
-        "http://localhost:4000/author-api/article",
+        `${import.meta.env.VITE_API_URL}/author-api/article`,
         { articleId: article._id, isArticleActive: newStatus },
         { withCredentials: true },
       );
@@ -113,7 +113,7 @@ function ArticleByID() {
     //add artcileId
     commentObj.articleId = article._id;
     console.log(commentObj);
-    let res = await axios.put("http://localhost:4000/user-api/articles", commentObj, { withCredentials: true });
+    let res = await axios.put(`${import.meta.env.VITE_API_URL}/user-api/articles`, commentObj, { withCredentials: true });
     if (res.status === 200) {
       toast.success(res.data.message);
       setArticle(res.data.payload);

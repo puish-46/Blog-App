@@ -23,17 +23,17 @@ function AuthorList() {
   }, []);
 
   async function getUsers() {
-    let res = await axios.get("http://localhost:4000/admin-api/authors",{withCredentials: true,});
+    let res = await axios.get(`${import.meta.env.VITE_API_URL}/admin-api/authors`,{withCredentials: true,});
     setUsers(res.data.payload);
   }
 
   async function deleteUser(email) {
-    await axios.patch("http://localhost:4000/admin-api/user",{email,isUserActive: false,},{withCredentials: true,});
+    await axios.patch(`${import.meta.env.VITE_API_URL}/admin-api/user`,{email,isUserActive: false,},{withCredentials: true,});
     getUsers();
   }
 
   async function restoreUser(email) {
-    await axios.patch("http://localhost:4000/admin-api/user",{email,isUserActive: true,},{withCredentials: true,});
+    await axios.patch(`${import.meta.env.VITE_API_URL}/admin-api/user`,{email,isUserActive: true,},{withCredentials: true,});
     getUsers();
   }
 
