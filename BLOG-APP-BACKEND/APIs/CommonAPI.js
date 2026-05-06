@@ -68,7 +68,7 @@ commonApp.post("/login",async(req,res)=>{
     const user=await UserModel.findOne({email:email})
     //if email not exits
     if(!user){
-        return res.status(404).json({message:"Invalid email"})
+        return res.status(401).json({message:"Invalid email"})
     }
     // block login if admin has deactivated the account
     if (!user.isUserActive) {
