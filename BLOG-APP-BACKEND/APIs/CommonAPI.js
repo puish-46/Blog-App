@@ -55,6 +55,9 @@ commonApp.post("/users", upload.single("profileImageUrl"), async (req, res) => {
   }
 });
 
+commonApp.get("/test", (req,res)=>{
+  res.send("Common API working");
+});
 
 //route for login
 commonApp.post("/login",async(req,res)=>{
@@ -92,6 +95,9 @@ commonApp.post("/login",async(req,res)=>{
     res.status(200).json({message:"Login Success",payload:UserObj})
 })
 
+commonApp.get("/login-test", (req,res)=>{
+  res.send("Login route section loaded");
+});
 
 //route for logout
 commonApp.get("/logout",(req,res)=>{
