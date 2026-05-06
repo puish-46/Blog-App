@@ -81,9 +81,9 @@ commonApp.post("/login",async(req,res)=>{
     const signedToken=sign({id:user._id,email:email,role:user.role,firstName:user.firstName,lastName:user.lastName,profileImageUrl:user.profileImageUrl},process.env.SECRET_KEY,{expiresIn:'1h'})
     //before sending res of token , store token in httponly cookie
     res.cookie("token",signedToken,{
-        httponly:true,
-        sameSite:"lax",   
-        secure:false
+        httpOnly:true,
+        sameSite:"none",   
+        secure:true
     });
     //remove password
     const UserObj=user.toObject()
@@ -98,8 +98,8 @@ commonApp.get("/logout",(req,res)=>{
     //delete token from cookie storage
     res.clearCookie("token",{
         httponly:true,
-        sameSite:"lax",
-        secure:false
+        sameSite:"none",
+        secure:true
     });
     //send res
     res.status(200).json({message:"Logout Success"})
