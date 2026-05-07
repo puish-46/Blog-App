@@ -1,16 +1,43 @@
-# React + Vite
+# Blog App - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+A React + Vite frontend for the Blog App. Supports three user roles (User, Author, Admin) with protected routes and global auth state managed using Zustand.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Project Structure
 
-## React Compiler
+```
+src/
+├── App.jsx                    # Routes and layout setup
+├── store/
+│   └── authStore.js           # Zustand global auth state
+├── components/
+│   ├── Login.jsx              # Login page
+│   ├── Register.jsx           # Register page
+│   ├── Header.jsx             # Navigation header
+│   ├── Footer.jsx             # Footer
+│   ├── Home.jsx               # Home page
+│   ├── Articles.jsx           # All articles listing
+│   ├── ArticleByID.jsx        # Single article view
+│   ├── WriteArticles.jsx      # Author — write new article
+│   ├── EditArticle.jsx        # Author — edit article
+│   ├── AuthorArticles.jsx     # Author — view own articles
+│   ├── AuthorProfile.jsx      # Author profile page
+│   ├── AuthorList.jsx         # Admin — list of authors
+│   ├── UserList.jsx           # Admin — list of users
+│   ├── UserProfile.jsx        # User profile page
+│   ├── AdminProfile.jsx       # Admin profile page
+│   ├── ProtectedRoute.jsx     # Restricts routes by role
+│   ├── RootLayout.jsx         # Common layout wrapper
+│   └── Unauthorized.jsx       # Access denied page
+└── main.jsx                   # App entry point
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Concepts Covered
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **React Router** — multi-page navigation with nested routes
+- **Zustand** — global state for auth (login/logout/user info)
+- **Protected Routes** — role-based access (user / author / admin)
+- **JWT via Cookies** — credentials sent with each request
+- **Axios** — API calls to backend
+- **Component Composition** — shared Header, Footer, RootLayout
